@@ -17,6 +17,9 @@ def emo_detector():
 
     response = emotion_detector(text_to_analyze)
 
+    if response['dominant_emotion'] == None:
+        return "Invalid text! Please try again!."
+
     return response
 
 @app.route("/")
