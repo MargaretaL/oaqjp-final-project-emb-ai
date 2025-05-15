@@ -1,6 +1,13 @@
+"""
+server.py
+
+This module handles the server-side logic for the Emotion Detector application.
+It processes user input, determines the dominant emotion, and returns the result.
+
+"""
+
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
-
 
 app = Flask("Emotion Detection")
 
@@ -17,7 +24,7 @@ def emo_detector():
 
     response = emotion_detector(text_to_analyze)
 
-    if response['dominant_emotion'] == None:
+    if response['dominant_emotion'] is None:
         return "Invalid text! Please try again!."
 
     return response
@@ -30,7 +37,4 @@ def render_first_page():
     return render_template("index.html")
 
 if __name__== "__main__":
-    ''' 
-        This code executes the flask app and deploys it on localhost:5000
-    '''
     app.run(host="0.0.0.0", port=5000)
